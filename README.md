@@ -48,5 +48,5 @@ Citation:
       title={Multispectral and Hyperspectral Image Fusion by MS/HS Fusion Net},
       author={Xie, Qi and Minghao, Zhou and Zhao, Qian and Meng, Deyu and Zuo, Wangmeng and Xu, Zongben },
       booktitle={Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition},
-      year={2019}
+      year={2019} 
     }
