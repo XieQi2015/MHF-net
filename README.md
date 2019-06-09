@@ -1,10 +1,8 @@
 # KBR-Denoising
 Outline:
-
     Folder structure
     Usage
     Citation
-    URL of third-party toolboxes and functions
 
 
 Folder structure:
@@ -46,7 +44,7 @@ Folder structure:
 
 
 Usage:
-    
+
     For MSI with Gaussian noise, you can simply follow these steps:
         1.Re-arrange the MSI into [0, 1].
         2.Add the folder 'lib'into path, and use the function KBR_DeNoising as follows:
@@ -66,9 +64,9 @@ Usage:
 
 Citation:
 
-    Qi Xie, Qian Zhao, Deyu Meng*, & Zongben Xu
-    Kronecker-Basis-Representation Based Tensor Sparsity and Its Applications to Tensor Recovery[J]. 
-    IEEE Transactions on Pattern Analysis & Machine Intelligence, 2017, PP(99):1-1. (accepted)
+    Qi Xie, Minghao Zhou, Qian Zhao, Deyu Meng*, Wangmeng Zuo & Zongben Xu
+    Multispectral and Hyperspectral Image Fusion by MS/HS Fusion Net[C]
+    2019 IEEE Conference on Computer Vision and Pattern Recognition (CVPR). IEEE Computer Society, 2019.
 
     BibTeX:
       @article{Qi2017Kronecker,  
@@ -81,22 +79,3 @@ Citation:
       year={2017},
       }
 
-URL of the toolboxes and functions:
-
-    [1]  tensor_toolbox     http://www.sandia.gov/~tgkolda/TensorToolbox/index-2.5.html
-    [2]  ssim_index.m       https://ece.uwaterloo.ca/~z70wang/research/ssim/
-    [3]  FeatureSIM.m       http://www4.comp.polyu.edu.hk/~cslzhang/IQA/FSIM/FSIM.htm
-    [4]  ksvdbox            http://www.cs.technion.ac.il/~ronrubin/software.html
-    [5]  ompbox             http://www.cs.technion.ac.il/~ronrubin/software.html
-    [6]  naonlm3d           http://personales.upv.es/jmanjon/denoising/arnlm.html
-    [7]  BM3D               http://www.cs.tut.fi/~foi/GCF-BM3D/
-    [8]  BM4D               http://www.cs.tut.fi/~foi/GCF-BM3D/
-    [9]  tensor_dl          http://gr.xjtu.edu.cn/web/dymeng/3
-    [10] t-SVD              http://www.ece.tufts.edu/~shuchin/software.html
-
-Acknowledgements£º
-
-    We would liked to thank Epitropou Georgios (a member of Electronics Laboratory, Optoelectronics Group, Dept. of 
-    Electronics & Comp. Engineering, Technical University of Crete University Campus, Kounoupidiana) for he help us
-    to provide a memory saving version of our code, which is useful for someone with little memory who needs to trim
-    some run time.
