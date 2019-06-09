@@ -30,7 +30,7 @@ Usage:
     http://www.cs.columbia.edu/CAVE/databases/multispectral/
     and put the data in the folder ./ rowData/CAVEdata/complete_ms_data/ just like:
     
-    ![We should have a image here](https://github.com/XieQi2015/MHF-net/blob/master/example.png)
+    ![We should have a image here](https://github.com/XieQi2015/ImageFolder/raw/master/MHFnet/example.png)
     
     Then, you can just run CAVEmain.py while setting FLAGS.mode in line 23 as 'train'. There will be 20 samples randomly selected to be training samples, and the remain 12 samples will be used as testing samples.
     You can also run CAVEmain.py while setting FLAGS.mode in line 23 as 'testAll' to test all the 12 testing samples
