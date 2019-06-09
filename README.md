@@ -1,4 +1,5 @@
-# MS/HS Fusion Net for Multispectral and Hyperspectral Image Fusion
+# MS/HS Fusion Net 
+for Multispectral and Hyperspectral Image Fusion
 The code has been test on Windows 10 with Tensorflow 1.12.0
 
 Outline:
@@ -23,13 +24,13 @@ Folder structure:
 
 Usage:
 
-
     To run testing with the example data "TestSample.mat ", you can just run CAVEmain.py while setting FLAGS.mode in line 23 as 'test'
       
-
     To train and test on CAVE data set, you must first download the CAVE data set form 
     http://www.cs.columbia.edu/CAVE/databases/multispectral/
     and put the data in the folder ./ rowData/CAVEdata/complete_ms_data/ just like:
+    
+    ![Image text](https://raw.githubusercontent.com/XieQi2015/ImageFolder/master/example_看图王.png?token=AC6N74LMYE6JR5XB7VGYYY247VQ64)
     
     Then, you can just run CAVEmain.py while setting FLAGS.mode in line 23 as 'train'. There will be 20 samples randomly selected to be training samples, and the remain 12 samples will be used as testing samples.
     You can also run CAVEmain.py while setting FLAGS.mode in line 23 as 'testAll' to test all the 12 testing samples
