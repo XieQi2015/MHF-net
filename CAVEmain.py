@@ -145,6 +145,7 @@ def train():
     config = tf.ConfigProto(allow_soft_placement=True,log_device_placement=True)    
     save_path = FLAGS.train_dir
     ML.mkdir(save_path)
+    ML.mkdir('tempIm_train')
     epoch = int(FLAGS.epoch)
     
     with tf.Session(config=config) as sess:
@@ -204,8 +205,8 @@ def train():
                                          ML.setRange(ML.normalized(ML.get3band_of_tensor(pred_HY))),
                                          ML.setRange(showX, maxS, minS)))
                     toshow  = np.vstack((toshow,toshow2))
-                    ML.imshow(toshow)
-#                    ML.imwrite(toshow,('tempIm_train/epoch%d_num%d.png'%(j+1,num+1)))
+#                    ML.imshow(toshow)
+                    ML.imwrite(toshow,('tempIm_train/epoch%d_num%d.png'%(j+1,num+1))) # Current Results on training samples are saved in the folder for easy observation  
     
             CurLoss = Training_Loss/(num+1)
 
