@@ -114,7 +114,7 @@ def PrepareDataAndiniValue():
             for i in range(32):
                 n=n+1
                 Z = np.zeros([16,16,31])
-                X = readImofDir('rowData/CAVEdata/complete_ms_data/'+dirs[Ind[i]-1])/255
+                X = readImofDir('rowData/CAVEdata/complete_ms_data/'+dirs[Ind[i]-1]+'/'+dirs[Ind[i]-1])/255
                 print('processing '+ dirs[Ind[i]-1])
                 Y = np.tensordot(X,R,(2,0))
                 for j in range(32):
