@@ -33,7 +33,6 @@ To train and test on CAVE data set, you must first download the CAVE data set fo
 Then, you can just run CAVEmain.py while setting FLAGS.mode in line 23 as 'train'. There will be 20 samples randomly selected to be training samples, and the remain 12 samples will be used as testing samples.
 You can also run CAVEmain.py while setting FLAGS.mode in line 23 as 'testAll' to test all the 12 testing samples
 
-
 Citation:
 
     Qi Xie, Minghao Zhou, Qian Zhao, Deyu Meng*, Wangmeng Zuo & Zongben Xu
@@ -48,3 +47,5 @@ Citation:
       booktitle={Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition},
       year={2019} 
     }
+
+If you encounter any problems, feel free to contact xq.liwu@stu.xjtu.edu.cn
