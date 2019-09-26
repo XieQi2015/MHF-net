@@ -99,7 +99,7 @@ def eval_data_in(batch_size=20):
 # Prepare data for training and generate the initial A and upsampling kernals     
 def PrepareDataAndiniValue():
     DataRoad = 'CAVEdata/'
-    folder = os.path.exists(DataRoad)
+    folder = os.path.exists(DataRoad+'iniA.mat')
     if not folder:
         print('Generating the training and testing data in folder CAVEdata')
         Ind  = [2,31,25,6,27,15,19,14,12,28,26,29,8,13,22,7,24,30,10,23,18,17,21,3,9,4,20,5,16,32,11,1]; #random index
@@ -114,8 +114,11 @@ def PrepareDataAndiniValue():
             for i in range(32):
                 n=n+1
                 Z = np.zeros([16,16,31])
-                X = readImofDir('rowData/CAVEdata/complete_ms_data/'+dirs[Ind[i]-1]+'/'+dirs[Ind[i]-1])/255
                 print('processing '+ dirs[Ind[i]-1])
+#                if dirs[Ind[i]-1]=='watercolors_ms':
+#                    X = readImofDir('rowData/CAVEdata/complete_ms_data/'+dirs[Ind[i]-1])/255
+#                else:
+                X = readImofDir('rowData/CAVEdata/complete_ms_data/'+dirs[Ind[i]-1]+'/'+dirs[Ind[i]-1])/255
                 Y = np.tensordot(X,R,(2,0))
                 for j in range(32):
                     for k in range(32):
@@ -148,24 +151,20 @@ def readImofDir(theRoad):
     X = np.zeros([512,512,31])
     for root, dirs, files in os.walk(theRoad):
         for i in range(31):
-            I = cv2.imread(theRoad+'/'+files[i])
+            if files[0] == 'Thumbs.db':
+                j = i+1
+            else:
+                j = i
+            I = cv2.imread(theRoad+'/'+files[j])
             I =  I.astype('Float32')
             X[:,:,i] = np.mean(I,2)
     return X
         
-
+#X = readImofDir('rowData/CAVEdata/complete_ms_data/'+'watercolors_ms'+'/'+'watercolors_ms')/255
                  
-                
-                
-                    
-                
-            
+
 #PrepareDataAndiniValue()    
         
-
-            
-    
-
 
 #
 #allX, allY = all_train_data_in()

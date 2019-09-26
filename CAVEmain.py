@@ -107,6 +107,7 @@ def test():
     toshow  = np.hstack((ML.normalized(ML.get3band_of_tensor(pred_HY)),ML.get3band_of_tensor(pred_YA)))
     toshow2 = np.hstack((ML.get3band_of_tensor(pred_X),ML.get3band_of_tensor(inX)))
     toshow  = np.vstack((toshow,toshow2))
+    print('The vasaul result of Y_hat (left upper), Y*A (right upper), fusion result (left lower) and ground truth (right lower)')
     ML.imshow(toshow)
     ML.imwrite(toshow)
 
@@ -150,8 +151,8 @@ def train():
     
     with tf.Session(config=config) as sess:
         sess.run(tf.global_variables_initializer())
-        if tf.train.get_checkpoint_state('temp/TrainedNet/'):   # load previous trained model
-            ckpt = tf.train.latest_checkpoint('temp/TrainedNet/')
+        if tf.train.get_checkpoint_state('temp/TrainedNet0/'):   # load previous trained model
+            ckpt = tf.train.latest_checkpoint('temp/TrainedNet0/')
             saver.restore(sess, ckpt)
             ckpt_num = re.findall(r"\d",ckpt)
             if len(ckpt_num)==3:
@@ -205,7 +206,7 @@ def train():
                                          ML.setRange(ML.normalized(ML.get3band_of_tensor(pred_HY))),
                                          ML.setRange(showX, maxS, minS)))
                     toshow  = np.vstack((toshow,toshow2))
-#                    ML.imshow(toshow)
+#                    ML.imshow(toshow) #Show Current Results, Can be use with the compiler "spyder"
                     ML.imwrite(toshow,('tempIm_train/epoch%d_num%d.png'%(j+1,num+1))) # Current Results on training samples are saved in the folder for easy observation  
     
             CurLoss = Training_Loss/(num+1)
@@ -227,7 +228,7 @@ def train():
             
             print ('The %d epoch is finished, learning rate = %.8f, Training_Loss = %.4f, Validation_Loss = %.4f, PSNR = %.4f, SSIM = %.4f, PSNR_Valid = %.4f,SSIM_Valid = %.4f.' %
                   (j+1, lr_, CurLoss, Validation_Loss, psnr, ssim, psnr_val,ssim_val))
-            ML.imshow(toshow)
+#            ML.imshow(toshow)
             print('=========================================')     
             print('*****************************************')
                               

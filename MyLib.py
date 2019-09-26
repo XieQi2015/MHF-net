@@ -48,5 +48,5 @@ def mkdir(path):
 		print("---  new folder...  ---")
 		print("---  "+path+"  ---")
 	else:
-		print("---  There is "+ path + " !  ---")
+		print("---  There exsits folder "+ path + " !  ---")
 		 
