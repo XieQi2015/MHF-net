@@ -28,6 +28,7 @@ def get3band_of_tensor(outX,nbanch=0,nframe=[0,1,2]):
 
 def imshow(X):
 #    X = ML.normalized(X)
+    plt.close()
     X = np.maximum(X,0)
     X = np.minimum(X,1)
     plt.imshow(X[:,:,::-1]) 
