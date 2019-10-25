@@ -1,6 +1,6 @@
 # MS/HS Fusion Net 
 for Multispectral and Hyperspectral Image Fusion
-The code has been test on Windows 10 with Tensorflow 1.12.0
+The code has been test on Windows 10 with Tensorflow 1.12.0 and environment of Spyder
 
 Outline:
 
