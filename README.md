@@ -1,6 +1,7 @@
 # MS/HS Fusion Net 
 for Multispectral and Hyperspectral Image Fusion
-The code has been test on Windows 10 with Tensorflow 1.12.0
+
+The code has been test on Windows 10 with Tensorflow 1.12.0 and environment of Spyder
 
 Outline:
 
@@ -32,6 +33,8 @@ To train and test on CAVE data set, you must first download the CAVE data set fo
 
 Then, you can just run CAVEmain.py while setting FLAGS.mode in line 23 as 'train'. There will be 20 samples randomly selected to be training samples, and the remain 12 samples will be used as testing samples.
 You can also run CAVEmain.py while setting FLAGS.mode in line 23 as 'testAll' to test all the 12 testing samples
+
+!!! If you want to use another spectral response function or data, you should reproduce the parameter 'iniA' with the method in scetion 4 of the supplementary material of our paper, this is important to achieve good performance !!!
 
 Citation:
 
