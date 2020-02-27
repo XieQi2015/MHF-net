@@ -154,10 +154,6 @@ def Ynormalize(allY):
     return Ynum
 
 
-          
-
-       
-        
 def readImofDir(theRoad):
     X = np.zeros([512,512,31])
     for root, dirs, files in os.walk(theRoad):
