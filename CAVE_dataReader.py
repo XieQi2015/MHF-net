@@ -147,6 +147,17 @@ def PrepareDataAndiniValue():
     else:
         print('Using the prepared data and initial values in folder CAVEdata')
         
+        
+def Ynormalize(allY):
+    Ynum = 0.22192006684097354/np.mean(allY)
+    sio.savemat('CAVEdata/Ynum', {'Ynum': Ynum})   
+    return Ynum
+
+
+          
+
+       
+        
 def readImofDir(theRoad):
     X = np.zeros([512,512,31])
     for root, dirs, files in os.walk(theRoad):
@@ -168,6 +179,9 @@ def readImofDir(theRoad):
 
 #
 #allX, allY = all_train_data_in()
+#Ynum = Ynormalize(allY)
+
+
 #batch_X, batch_Y, batch_Z= train_data_in(allX, allY, 96, 10, 31)
 #batch_X, batch_Y, batch_Z= eval_data_in()    
 #print(batch_X.shape)

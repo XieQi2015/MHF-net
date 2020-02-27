@@ -22,7 +22,9 @@ FLAGS = tf.app.flags.FLAGS
 # Mode：train, test, testAll for test all sample
 tf.app.flags.DEFINE_string('mode', 'test', 
                            'train or test or testAll.')
-
+# if normalized the RGB image
+tf.app.flags.DEFINE_integer('Ynormalize', 1,
+                            'normalized the RGB image or not. (0 or 1)')
 # output channel number
 tf.app.flags.DEFINE_integer('outDim', 31,
                            'output channel number') 
@@ -77,10 +79,17 @@ def test():
     Y    = data['RGB']
     Z    = data['Zmsi']
     X    = data['msi']   
-            
+    if FLAGS.Ynormalize:
+        Ynum = 1 
+#        Depending on the situation, this line may need to be changed as following:
+#        data = sio.loadmat("CAVEdata/Ynum")
+#        Ynum = data['Ynum']
+    else:
+        Ynum = 1
+        
     ## banchsize H W C
     inY = np.expand_dims(Y, axis = 0)
-    inY = tf.to_float(inY);
+    inY = tf.to_float(inY)*Ynum;
     
     inZ = np.expand_dims(Z, axis = 0)
     inZ = tf.to_float(inZ);
@@ -115,6 +124,8 @@ def test():
 #train
 def train():
     Crd.PrepareDataAndiniValue()   
+
+        
     random.seed( 1 )  
 
    
@@ -170,6 +181,13 @@ def train():
         allX, allY = Crd.all_train_data_in()
         
         val_h5_X, val_h5_Y, val_h5_Z= Crd.eval_data_in(20)
+        
+        if FLAGS.Ynormalize:
+            Ynum = Crd.Ynormalize(allY)   
+        else:
+            Ynum = 1
+        allY = allY*Ynum
+        val_h5_Y = val_h5_Y*Ynum
                 
         for j in range(start_point,epoch):   
 
@@ -238,6 +256,11 @@ def testAll():
     ## test all the testing samples
     iniA         = 0 
     iniUp3x3     = 0
+    if FLAGS.Ynormalize:
+        data = sio.loadmat("CAVEdata/Ynum")
+        Ynum = data['Ynum']
+    else:
+        Ynum = 1
     Y       = tf.placeholder(tf.float32, shape=(1, 512, 512, 3))  # supervised data (None,64,64,3)
     Z       = tf.placeholder(tf.float32, shape=(1, 512/32, 512/32, FLAGS.outDim))
     outX, X1, YA, _, HY = MHFnet.HSInet(Y, Z, iniUp3x3,iniA,FLAGS.upRank,FLAGS.outDim,FLAGS.HSInetL,FLAGS.subnetL)
@@ -254,7 +277,7 @@ def testAll():
             for i in range(32):       
                 data = sio.loadmat("CAVEdata/Y/"+files[i])
                 inY  = data['RGB']
-                inY  = np.expand_dims(inY, axis = 0)
+                inY  = np.expand_dims(inY, axis = 0)*Ynum
                 data = sio.loadmat("CAVEdata/Z/"+files[i])
                 inZ  = data['Zmsi']
                 inZ  = np.expand_dims(inZ, axis = 0)

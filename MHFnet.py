@@ -27,6 +27,7 @@ def HSInet(Y,Z, iniUp3x3,iniA,upRank,outDim,HSInetL,subnetL,ratio=32):
     G  = tf.nn.conv2d(G, tranB, [1,1,1,1], padding='SAME')
     HY = -G #
     HY  = resCNNnet(('Pri%s'%(1)),HY,1,upRank, subnetL) 
+#    HY  = resCNNnetPrior(('Pri%s'%(1)),HY, Y,1,upRank,3,subnetL)
     ListX = []
     
     # 2nd to the 19th stage
@@ -39,6 +40,7 @@ def HSInet(Y,Z, iniUp3x3,iniA,upRank,outDim,HSInetL,subnetL,ratio=32):
         G   = tf.nn.conv2d(G, tranB, [1,1,1,1], padding='SAME')
         HY  = HY-G
         HY  = resCNNnet(('Pri%s'%(j+2)),HY,j+2,upRank, subnetL)
+#        HY  = resCNNnetPrior(('Pri%s'%(j+2)),HY, Y,j+2,upRank,3,subnetL)
     
     #the final stage
     HYB     = tf.nn.conv2d(HY, B, [1,1,1,1], padding='SAME')
@@ -53,6 +55,14 @@ def resCNNnet(name,X,j,channel,levelN):
     with tf.variable_scope(name): 
         for i in range(levelN-1):
             X = resLevel(('resCNN_%s_%s'%(j,i+1)), 3, X, channel)                        
+        return X    
+    
+# reCNNnet 
+def resCNNnetPrior(name,X,Y,j,channel,channelY,levelN):
+    with tf.variable_scope(name): 
+        for i in range(levelN-1):
+#            X = resLevel(('resCNN_%s_%s'%(j,i+1)), 3, X, channel)        
+            X = resLevel_addF(('resCNN_%s_%s'%(j,i+1)), 3, X, Y,channel,channelY)               
         return X    
                         
 # get the downsampling kernels  
