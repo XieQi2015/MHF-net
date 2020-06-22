@@ -20,11 +20,11 @@ import MHFnet as MHFnet
 FLAGS = tf.app.flags.FLAGS
 
 # Mode：train, test, testAll for test all sample
-tf.app.flags.DEFINE_string('mode', 'test', 
+tf.app.flags.DEFINE_string('mode', 'train', 
                            'train or test or testAll.')
-# if normalized the RGB image
-tf.app.flags.DEFINE_integer('Ynormalize', 1,
-                            'normalized the RGB image or not. (0 or 1)')
+# Rdir: road of response coefficient
+tf.app.flags.DEFINE_string('Rdir', 'rowData/CAVEdata/response coefficient', 
+                           'corfficient for generate the data')
 # output channel number
 tf.app.flags.DEFINE_integer('outDim', 31,
                            'output channel number') 
@@ -53,7 +53,7 @@ tf.app.flags.DEFINE_integer('epoch', 31,
 tf.app.flags.DEFINE_string('test_data_name', 'TestSample',
                            'Filepattern for eval data') 
 # path of training result
-tf.app.flags.DEFINE_string('train_dir', 'temp/TrainedNet/',
+tf.app.flags.DEFINE_string('train_dir', 'temp/TrainedNet_/',
                            'Directory to keep training outputs.')
 # path of the testing result 
 tf.app.flags.DEFINE_string('test_dir', 'TestResult/Result_1/',
@@ -79,17 +79,10 @@ def test():
     Y    = data['RGB']
     Z    = data['Zmsi']
     X    = data['msi']   
-    if FLAGS.Ynormalize:
-        Ynum = 1 
-#        Depending on the situation, this line may need to be changed as following:
-#        data = sio.loadmat("CAVEdata/Ynum")
-#        Ynum = data['Ynum']
-    else:
-        Ynum = 1
         
     ## banchsize H W C
     inY = np.expand_dims(Y, axis = 0)
-    inY = tf.to_float(inY)*Ynum;
+    inY = tf.to_float(inY);
     
     inZ = np.expand_dims(Z, axis = 0)
     inZ = tf.to_float(inZ);
@@ -123,12 +116,11 @@ def test():
 #==============================================================================#
 #train
 def train():
-    Crd.PrepareDataAndiniValue()   
-
-        
+    data = sio.loadmat(FLAGS.Rdir)
+    R    = data['A']
+    Crd.PrepareDataAndiniValue(R)    
     random.seed( 1 )  
 
-   
     ## 变为4D张量 banchsize H W C
     iniData1 = sio.loadmat("CAVEdata/iniA")
     iniA         = iniData1['iniA'] 
@@ -182,12 +174,6 @@ def train():
         
         val_h5_X, val_h5_Y, val_h5_Z= Crd.eval_data_in(20)
         
-        if FLAGS.Ynormalize:
-            Ynum = Crd.Ynormalize(allY)   
-        else:
-            Ynum = 1
-        allY = allY*Ynum
-        val_h5_Y = val_h5_Y*Ynum
                 
         for j in range(start_point,epoch):   
 
@@ -224,7 +210,7 @@ def train():
                                          ML.setRange(ML.normalized(ML.get3band_of_tensor(pred_HY))),
                                          ML.setRange(showX, maxS, minS)))
                     toshow  = np.vstack((toshow,toshow2))
-#                    ML.imshow(toshow) #Show Current Results, Can be use with the compiler "spyder"
+                    ML.imshow(toshow) #Show Current Results, Can be use with the compiler "spyder"
                     ML.imwrite(toshow,('tempIm_train/epoch%d_num%d.png'%(j+1,num+1))) # Current Results on training samples are saved in the folder for easy observation  
     
             CurLoss = Training_Loss/(num+1)
@@ -256,11 +242,6 @@ def testAll():
     ## test all the testing samples
     iniA         = 0 
     iniUp3x3     = 0
-    if FLAGS.Ynormalize:
-        data = sio.loadmat("CAVEdata/Ynum")
-        Ynum = data['Ynum']
-    else:
-        Ynum = 1
     Y       = tf.placeholder(tf.float32, shape=(1, 512, 512, 3))  # supervised data (None,64,64,3)
     Z       = tf.placeholder(tf.float32, shape=(1, 512/32, 512/32, FLAGS.outDim))
     outX, X1, YA, _, HY = MHFnet.HSInet(Y, Z, iniUp3x3,iniA,FLAGS.upRank,FLAGS.outDim,FLAGS.HSInetL,FLAGS.subnetL)
@@ -277,7 +258,7 @@ def testAll():
             for i in range(32):       
                 data = sio.loadmat("CAVEdata/Y/"+files[i])
                 inY  = data['RGB']
-                inY  = np.expand_dims(inY, axis = 0)*Ynum
+                inY  = np.expand_dims(inY, axis = 0)
                 data = sio.loadmat("CAVEdata/Z/"+files[i])
                 inZ  = data['Zmsi']
                 inZ  = np.expand_dims(inZ, axis = 0)

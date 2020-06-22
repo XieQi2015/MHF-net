@@ -97,14 +97,13 @@ def eval_data_in(batch_size=20):
     return train_data_in(allX, allY, 96, batch_size, 31, 12)
 
 # Prepare data for training and generate the initial A and upsampling kernals     
-def PrepareDataAndiniValue():
+def PrepareDataAndiniValue(R):
     DataRoad = 'CAVEdata/'
     folder = os.path.exists(DataRoad+'iniA.mat')
     if not folder:
         print('Generating the training and testing data in folder CAVEdata')
         Ind  = [2,31,25,6,27,15,19,14,12,28,26,29,8,13,22,7,24,30,10,23,18,17,21,3,9,4,20,5,16,32,11,1]; #random index
-        data = sio.loadmat('rowData/CAVEdata/response coefficient')
-        R    = data['A']
+
         ML.mkdir(DataRoad+'X/')
         ML.mkdir(DataRoad+'Y/')
         ML.mkdir(DataRoad+'Z/')
@@ -147,12 +146,6 @@ def PrepareDataAndiniValue():
     else:
         print('Using the prepared data and initial values in folder CAVEdata')
         
-        
-def Ynormalize(allY):
-    Ynum = 0.22192006684097354/np.mean(allY)
-    sio.savemat('CAVEdata/Ynum', {'Ynum': Ynum})   
-    return Ynum
-
 
 def readImofDir(theRoad):
     X = np.zeros([512,512,31])
