@@ -20,11 +20,11 @@ import MHFnet as MHFnet
 FLAGS = tf.app.flags.FLAGS
 
 # Mode：train, test, testAll for test all sample
-tf.app.flags.DEFINE_string('mode', 'train', 
+tf.app.flags.DEFINE_string('mode', 'test', 
                            'train or test or testAll.')
-# Rdir: road of response coefficient
-tf.app.flags.DEFINE_string('Rdir', 'rowData/CAVEdata/response coefficient', 
-                           'corfficient for generate the data')
+# Prepare Data: if reprepare data samples for training and testing
+tf.app.flags.DEFINE_string('Prepare', 'Yes', 
+                           'Yes or No')
 # output channel number
 tf.app.flags.DEFINE_integer('outDim', 31,
                            'output channel number') 
@@ -53,10 +53,10 @@ tf.app.flags.DEFINE_integer('epoch', 31,
 tf.app.flags.DEFINE_string('test_data_name', 'TestSample',
                            'Filepattern for eval data') 
 # path of training result
-tf.app.flags.DEFINE_string('train_dir', 'temp/TrainedNet_/',
+tf.app.flags.DEFINE_string('train_dir', 'temp/TrainedNet/',
                            'Directory to keep training outputs.')
 # path of the testing result 
-tf.app.flags.DEFINE_string('test_dir', 'TestResult/Result_1/',
+tf.app.flags.DEFINE_string('test_dir', 'TestResult/Result/',
                            'Directory to keep eval outputs.')
 # the size of training samples
 tf.app.flags.DEFINE_integer('image_size', 96, 
@@ -110,15 +110,19 @@ def test():
     toshow2 = np.hstack((ML.get3band_of_tensor(pred_X),ML.get3band_of_tensor(inX)))
     toshow  = np.vstack((toshow,toshow2))
     print('The vasaul result of Y_hat (left upper), Y*A (right upper), fusion result (left lower) and ground truth (right lower)')
-    ML.imshow(toshow)
     ML.imwrite(toshow)
+    ML.imshow(toshow)
+
 
 #==============================================================================#
 #train
 def train():
-    data = sio.loadmat(FLAGS.Rdir)
-    R    = data['A']
-    Crd.PrepareDataAndiniValue(R)    
+#    data = sio.loadmat(FLAGS.Rdir)
+#    R    = data['A']
+    data = sio.loadmat('rowData/CAVEdata/response coefficient')
+    R    = data['R']
+    C    = data['C']
+    Crd.PrepareDataAndiniValue(R,C,FLAGS.Prepare)    
     random.seed( 1 )  
 
     ## 变为4D张量 banchsize H W C
@@ -172,7 +176,7 @@ def train():
         
         allX, allY = Crd.all_train_data_in()
         
-        val_h5_X, val_h5_Y, val_h5_Z= Crd.eval_data_in(20)
+        val_h5_X, val_h5_Y, val_h5_Z= Crd.eval_data_in(C, 20)
         
                 
         for j in range(start_point,epoch):   
@@ -182,7 +186,7 @@ def train():
 
             Training_Loss = 0                        
             for num in range(FLAGS.BatchIter):    
-                batch_X, batch_Y,batch_Z = Crd.train_data_in(allX, allY, FLAGS.image_size, FLAGS.batch_size)
+                batch_X, batch_Y,batch_Z = Crd.train_data_in(allX, allY, C, FLAGS.image_size, FLAGS.batch_size)
 
                 _,lossvalue = sess.run([g_optim,loss], feed_dict={X:batch_X,Y:batch_Y,Z:batch_Z,lr:lr_}) 
                 

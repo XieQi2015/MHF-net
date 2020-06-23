@@ -49,7 +49,7 @@ def all_test_data_in():
                 allDataY.append(inY)
     return allDataX, allDataY
 
-def train_data_in(allX, allY, sizeI, batch_size, channel=31,dataNum = 20):
+def train_data_in(allX, allY, C, sizeI, batch_size, channel=31,dataNum = 20):
 #    meanfilt = np.ones((32,32))/32/32
     batch_X = np.zeros((batch_size, sizeI, sizeI, channel),'f')
     batch_Y = np.zeros((batch_size, sizeI, sizeI, 3),'f')
@@ -88,21 +88,23 @@ def train_data_in(allX, allY, sizeI, batch_size, channel=31,dataNum = 20):
 
     for j in range(32):
         for k in range(32):
-            batch_Z = batch_Z + batch_X[:,j:512:32,k:512:32,:]/32/32
+            batch_Z = batch_Z + batch_X[:,j:512:32,k:512:32,:]*C[k,j]
 
     return batch_X, batch_Y, batch_Z
 
-def eval_data_in(batch_size=20):
+def eval_data_in(C, batch_size=20):
     allX, allY = all_test_data_in()
-    return train_data_in(allX, allY, 96, batch_size, 31, 12)
+    return train_data_in(allX, allY, C, 96, batch_size, 31, 12)
 
 # Prepare data for training and generate the initial A and upsampling kernals     
-def PrepareDataAndiniValue(R):
+def PrepareDataAndiniValue(R,C,prepare='Yes'):
     DataRoad = 'CAVEdata/'
-    folder = os.path.exists(DataRoad+'iniA.mat')
-    if not folder:
+#    folder = os.path.exists(DataRoad+'iniA.mat')
+#    if not folder:
+    if prepare != 'No':
         print('Generating the training and testing data in folder CAVEdata')
-        Ind  = [2,31,25,6,27,15,19,14,12,28,26,29,8,13,22,7,24,30,10,23,18,17,21,3,9,4,20,5,16,32,11,1]; #random index
+         #random index, firt 20 ind will become traing data, and the others will be testing data
+        Ind  = [2,31,25,6,27,15,19,14,12,28,26,29,8,13,22,7,24,30,10,23,18,17,21,3,9,4,20,5,16,32,11,1];
 
         ML.mkdir(DataRoad+'X/')
         ML.mkdir(DataRoad+'Y/')
@@ -121,7 +123,7 @@ def PrepareDataAndiniValue(R):
                 Y = np.tensordot(X,R,(2,0))
                 for j in range(32):
                     for k in range(32):
-                        Z = Z + X[j:512:32,k:512:32,:]/32/32
+                        Z = Z + X[j:512:32,k:512:32,:]*C[k,j]
                 sio.savemat(DataRoad+'X/'+dirs[Ind[i]-1], {'msi': X})     
                 sio.savemat(DataRoad+'Y/'+dirs[Ind[i]-1], {'RGB': Y})   
                 sio.savemat(DataRoad+'Z/'+dirs[Ind[i]-1], {'Zmsi': Z})   
