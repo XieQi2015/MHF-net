@@ -1,5 +1,5 @@
-# MS/HS Fusion Net 
-for Multispectral and Hyperspectral Image Fusion
+# Consistent MS/HS Fusion Net 
+For multispectral and hyperspectral image fusion in the case that spectral and spatial responses of training and testing data are consistent
 
 The code has been test on Windows 10 with Tensorflow 1.12.0 and environment of Spyder
 
