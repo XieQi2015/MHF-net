@@ -191,15 +191,6 @@ def train():
             ckpt = tf.train.latest_checkpoint(save_path)
             saver.restore(sess, ckpt)
 
-#            Validation_Loss,pred_val  = sess.run([loss,outX],feed_dict={X:val_h5_X,Y:val_h5_Y,Z:val_h5_Z, A:val_h5_A, B:val_h5_B, C:val_h5_C,lr:lr_})
-#            psnr_val = skimage.measure.compare_psnr(val_h5_X,pred_val)
-#            ssim_val = skimage.measure.compare_ssim(val_h5_X,pred_val, multichannel=True)
-#            toshow = np.hstack(( ML.normalized(ML.get3band_of_tensor(pred_val, nbanch=7, nframe=[0,15,30])),
-#                                 ML.normalized(ML.get3band_of_tensor(val_h5_X, nbanch=7, nframe=[0,15,30]))))
-            
-#            print ('The %d epoch is finished, learning rate = %.8f, Training_Loss = %.4f, PSNR = %.4f, SSIM = %.4f.' %
-#                  (j+1, lr_, CurLoss, psnr, ssim))
-#            ML.imshow(toshow)
             print('=========================================')     
             print('*****************************************')
                               
