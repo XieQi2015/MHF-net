@@ -21,6 +21,7 @@ Folder structure:
         |-- CASI_Houston\  : CASI_Houston data set
         |       |-- 2013_IEEE_GRSS_DF_Contest_CASI.tif   : The images of data (To be downloaded)
         |       |-- GetTrainDFTCData.m                   : Matlab code for prepareing the train and test data
+        |       |-- AllRC.mat                            : A list of random R and C for testing
         |-- ROSIS_Pavia\   : ROSIS_Pavia data set
         |       |-- original_rosis.tif                   : The images of data (Downloaded)
         |       |-- GetPaviaData.m                       : Matlab code for prepareing the test data
