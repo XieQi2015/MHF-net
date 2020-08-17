@@ -25,6 +25,7 @@ Folder structure:
         |       |-- original_rosis.tif                   : The images of data (Downloaded)
         |       |-- GetTrainDFTCData.m                   : Matlab code for prepareing the test data
         |       |-- R.mat                                : A matrix of real spectral response coefficient
+    RealData\   : Prepared ROSIS_Pavia data for testing 
     temp\       : Trained result
         |-- TrainedNet\    : A example of trained parameters
     CAVE_dataReader.py     : The data reading and preparing code
@@ -34,8 +35,6 @@ Folder structure:
     TestSample.mat         : A example testing data
 
 Usage:
-
-To run testing with the example data "TestSample.mat ", you can just run CAVEmain.py while setting FLAGS.mode in line 23 as 'test'
       
 To train and test on CAVE data set, you must first download the CAVE data set form http://www.cs.columbia.edu/CAVE/databases/multispectral/, and put the data in the folder ./ rowData/CAVEdata/complete_ms_data/ just like:
 
