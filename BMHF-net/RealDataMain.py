@@ -54,7 +54,7 @@ tf.app.flags.DEFINE_integer('epoch', 80,
                            'epoch') 
 
 # 训练过程数据的存放路劲
-tf.app.flags.DEFINE_string('train_dir', 'temp/RealDataExamFinal/',
+tf.app.flags.DEFINE_string('train_dir', 'temp/RealDataExam/',
                            'Directory to keep training outputs.')
 # 测试过程数据的存放路劲
 tf.app.flags.DEFINE_string('test_dir', 'TestResult/RealDataExamFinal_10rand/',
@@ -92,7 +92,7 @@ def train():
 
     
 
-    outX, ListX, YA, E, HY  = BMHFnet.HSInet(Y, Z, A, B, C, FLAGS.upRank,FLAGS.outDim,FLAGS.HSInetL,FLAGS.subnetL,FLAGS.ratio,Yfram = [0,4,1])
+    outX, ListX, YA, E, HY, CX  = BMHFnet.HSInet(Y, Z, A, B, C, FLAGS.upRank,FLAGS.outDim,FLAGS.HSInetL,FLAGS.subnetL,FLAGS.ratio,Yfram = [0,4,1])
     
     # loss function
     loss    = tf.reduce_mean(tf.square(X - outX)) + FLAGS.lam1*tf.reduce_mean(tf.square(X - YA))+ FLAGS.lam2*tf.reduce_mean(tf.square(E))  # supervised MSE loss
@@ -198,7 +198,7 @@ def train():
 
 def testAll():
 
-    data = sio.loadmat('RealData/AllRC')
+    data = sio.loadmat('rowData/CASI_Houston/AllRC')
     allR = data['allR']
     allC = data['allC']
     
@@ -219,9 +219,9 @@ def testAll():
     C       = tf.placeholder(tf.float32, shape=(12, 12, 1, 1)) # supervised detail layer (None,64,64,3)
 
     
-    outX, ListX, YA, E, HY  = BMHFnet.HSInet(Y, Z, A, B, C, FLAGS.upRank,FLAGS.outDim,FLAGS.HSInetL,FLAGS.subnetL,FLAGS.ratio,Yfram = [0,4,1])
+    outX, ListX, YA, E, HY, CX  = BMHFnet.HSInet(Y, Z, A, B, C, FLAGS.upRank,FLAGS.outDim,FLAGS.HSInetL,FLAGS.subnetL,FLAGS.ratio,Yfram = [0,4,1])
     
-
+ 
     config = tf.ConfigProto(allow_soft_placement=True,log_device_placement=True)
     config.gpu_options.allow_growth = True
     saver = tf.train.Saver(max_to_keep = 5)
@@ -307,7 +307,7 @@ def testPavia():
     C       = tf.placeholder(tf.float32, shape=(12, 12, 1, 1)) # supervised detail layer (None,64,64,3)
 
 
-    outX, ListX, YA, E, HY  = BMHFnet.HSInet(Y, Z, A, B, C, FLAGS.upRank,FLAGS.outDim,FLAGS.HSInetL,FLAGS.subnetL,FLAGS.ratio,Yfram = [0,4,1])
+    outX, ListX, YA, E, HY, CX  = BMHFnet.HSInet(Y, Z, A, B, C, FLAGS.upRank,FLAGS.outDim,FLAGS.HSInetL,FLAGS.subnetL,FLAGS.ratio,Yfram = [0,4,1])
     
     config = tf.ConfigProto(allow_soft_placement=True,log_device_placement=True)
     config.gpu_options.allow_growth = True

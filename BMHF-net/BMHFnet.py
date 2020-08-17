@@ -7,7 +7,7 @@ Created on Fri Jul 20 23:05:10 2018
 import tensorflow as tf
 import numpy as np
 # main HSI net
-def HSInet(Y,Z, A, B, C,iniUp3x3,upRank,outDim,HSInetL,subnetL,ratio=32,Yfram = [0,30,14]):
+def HSInet(Y,Z, A, B, C,upRank,outDim,HSInetL,subnetL,ratio=32,Yfram = [0,30,14]):
     
     tranB = tf.transpose(B,perm = [0,1,3,2])
     # 第一层

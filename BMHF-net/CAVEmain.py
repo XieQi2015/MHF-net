@@ -20,6 +20,9 @@ FLAGS = tf.app.flags.FLAGS
 # Mode：train, test, testAll for test all sample
 tf.app.flags.DEFINE_string('mode', 'test', 
                            'train or test')
+# Prepare Data: if reprepare data samples for training and testing
+tf.app.flags.DEFINE_string('Prepare', 'Yes', 
+                           'Yes or No')
 # output channel number
 tf.app.flags.DEFINE_integer('outDim', 31,
                            'output channel number') 
@@ -45,7 +48,7 @@ tf.app.flags.DEFINE_float('learning_rate', 0.0001,
 tf.app.flags.DEFINE_integer('epoch', 40,
                            'epoch') 
 # path of training result
-tf.app.flags.DEFINE_string('train_dir', 'temp/CAVE_Final/',
+tf.app.flags.DEFINE_string('train_dir', 'temp/CAVE_Exam/',
                            'Directory to keep training outputs.')
 # path of the testing result 
 tf.app.flags.DEFINE_string('test_dir', 'TestResult/CAVE_Final_10rand/',
@@ -68,6 +71,8 @@ tf.app.flags.DEFINE_integer('num_gpus', 1,
 #==============================================================================#
 #train
 def train():
+    
+    Crd.PrepareDataAndiniValue(FLAGS.Prepare)    
     random.seed( 1 )        
     ## 变为4D张量 banchsize H W C             
     X       = tf.placeholder(tf.float32, shape=(FLAGS.batch_size, FLAGS.image_size, FLAGS.image_size, FLAGS.outDim))  # supervised label (None,64,64,3)
@@ -188,13 +193,13 @@ def testAll():
 
     ## 变为4D张量 banchsize H W C
 
-    data = sio.loadmat('AllR3')
+    data = sio.loadmat('rowData/CAVEdata/AllR')
     allR  = data['R']
 
-    data  = sio.loadmat('AllC2')
+    data  = sio.loadmat('rowData/CAVEdata/AllC')
     allC  = data['C']
     
-    data = sio.loadmat('randMatrix')
+    data = sio.loadmat('rowData/CAVEdata/randMatrix')
     randM1  = data['randM1']
     randM2  = data['randM2']
     

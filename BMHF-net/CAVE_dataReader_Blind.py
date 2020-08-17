@@ -22,9 +22,9 @@ def all_train_data_in():
                 inX  = data['msi']
                 allDataX.append(inX)
  
-           data  = sio.loadmat('CAVEdata/AllR')
+           data  = sio.loadmat('rowData/CAVEdata/AllR')
            allR  = data['R']
-           data  = sio.loadmat('CAVEdata/AllC') 
+           data  = sio.loadmat('rowData/CAVEdata/AllC') 
            allC  = data['C']
     return allDataX, allR, allC
 
@@ -114,7 +114,7 @@ def train_data_in(allX, allR, allC, sizeI, batch_size, channel=31,dataNum = 20):
 def eval_data_in(allR, allC, sizeI=96,batch_size=10):
 #    用这两行不需要h5文件
     allX = all_test_data_in()
-    return train_data_in(allX, allR, allC, sizeI, batch_size)  
+    return train_data_in(allX, allR, allC, sizeI, batch_size,31,12)  
                                 
 def mypadding(X, paddnum = 8):
     
@@ -150,7 +150,7 @@ def mypadding(X, paddnum = 8):
     
     return tempX
 
-def PrepareDataAndiniValue(R,C,prepare='Yes'):
+def PrepareDataAndiniValue(prepare='Yes'):
     DataRoad = 'CAVEdata/'
     if prepare != 'No':
         print('Generating the training and testing data in folder CAVEdata')
