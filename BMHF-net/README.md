@@ -53,14 +53,7 @@ The testing data ROSIS_Pavia download form http://www.ehu.eus/ccwintco/index.php
 https://pan.baidu.com/s/1_qo1a_uF8LzRRqLWg27rLg, Extraction code (提取码): m583.
 
 
-
-
-
 Citation:
-
-    Qi Xie, Minghao Zhou, Qian Zhao, Deyu Meng*, Wangmeng Zuo and Zongben Xu
-    Multispectral and Hyperspectral Image Fusion by MS/HS Fusion Net[C]
-    2019 IEEE Conference on Computer Vision and Pattern Recognition (CVPR). IEEE Computer Society, 2019.
 
     Qi Xie, Minghao Zhou, Qian Zhao, Zongben Xu and Deyu Meng* 
     MHF-Net: An Interpretable Deep Network for Multispectral and Hyperspectral Image Fusion
@@ -68,13 +61,6 @@ Citation:
 
     BibTeX:
     
-    @inproceedings{xie2019multispectral,
-      title={Multispectral and Hyperspectral Image Fusion by MS/HS Fusion Net},
-      author={Xie, Qi and Minghao, Zhou and Zhao, Qian and Meng, Deyu and Zuo, Wangmeng and Xu, Zongben },
-      booktitle={Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition},
-      year={2019} 
-    }
-
     @article{xie2020MHFnet,
       title={MHF-Net: An Interpretable Deep Network for Multispectral and Hyperspectral Image Fusion},
       author={Xie, Qi and Minghao, Zhou and Zhao, Qian and Xu, Zongben and Meng, Deyu},
