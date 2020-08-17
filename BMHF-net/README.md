@@ -23,7 +23,7 @@ Folder structure:
         |       |-- GetTrainDFTCData.m                   : Matlab code for prepareing the train and test data
         |-- ROSIS_Pavia\  : ROSIS_Pavia data set
         |       |-- original_rosis.tif                   : The images of data (Downloaded)
-        |       |-- GetTrainDFTCData.m                   : Matlab code for prepareing the test data
+        |       |-- GetPaviaData.m                       : Matlab code for prepareing the test data
         |       |-- R.mat                                : A matrix of real spectral response coefficient
     RealData\   : Prepared ROSIS_Pavia data for testing 
     temp\       : Trained result
@@ -36,12 +36,17 @@ Folder structure:
 
 Usage:
       
-To train and test on CAVE data set, you must first download the CAVE data set form http://www.cs.columbia.edu/CAVE/databases/multispectral/, and put the data in the folder ./ rowData/CAVEdata/complete_ms_data/ just like:
+To train and test on CAVE data set, you must first download the CAVE data set form http://www.cs.columbia.edu/CAVE/databases/multispectral/, and put the data in the folder ./ rowData/CAVEdata/complete_ms_data/, one can refer to the readme of CMHF-net for more detail.
 
 ![We should have a image here](https://github.com/XieQi2015/ImageFolder/raw/master/MHFnet/example.png)
 
 Then, you can just run CAVEmain.py while setting FLAGS.mode in line 23 as 'train'. There will be 20 samples randomly selected to be training samples, and the remain 12 samples will be used as testing samples.
 You can also run CAVEmain.py while setting FLAGS.mode in line 23 as 'testAll' to test all the 12 testing samples
+
+
+To train and test on CASI_Houston data set, you must first download the CAVE data set form https://hyperspectral.ee.uh.edu/?page%20id=459#download, and put 2013_IEEE_GRSS_DF_Contest_CASI.tif into folder ./ rowData/CASI_Houston/. Then run the GetTrainDFTCData.m to prepare the train and test data.
+
+The testing data ROSIS_Pavia download form http://www.ehu.eus/ccwintco/index.php?title=Hyperspectral, one can run GetPaviaData.m  to prepare the testing data.
 
 Citation:
 
