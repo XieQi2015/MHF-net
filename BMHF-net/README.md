@@ -18,6 +18,7 @@ Folder structure:
         |       |-- complete_ms_data\    : The images of data (To be downloaded)
         |       |-- AllR.mat             : Bases of spectral response coefficients
         |       |-- AllC.mat             : Bases of spatial response coefficients
+        |       |-- randMatrix.mat       : A list of random combination coefficients of AllR and AllC for testing
         |-- CASI_Houston\  : CASI_Houston data set
         |       |-- 2013_IEEE_GRSS_DF_Contest_CASI.tif   : The images of data (To be downloaded)
         |       |-- GetTrainDFTCData.m                   : Matlab code for prepareing the train and test data
