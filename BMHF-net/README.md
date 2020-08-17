@@ -65,7 +65,7 @@ Citation:
       title={MHF-Net: An Interpretable Deep Network for Multispectral and Hyperspectral Image Fusion},
       author={Xie, Qi and Minghao, Zhou and Zhao, Qian and Xu, Zongben and Meng, Deyu},
       journal={IEEE Transactions on Pattern Analysis and Machine Intelligence},
-      year={2017},
+      year={2020},
       publisher={IEEE}
     }
 
