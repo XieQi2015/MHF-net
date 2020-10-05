@@ -49,6 +49,10 @@ Then, you can just run CAVEmain.py while setting FLAGS.mode in line 23 as 'train
 You can also run CAVEmain.py while setting FLAGS.mode in line 23 as 'test' to test all the 12 testing samples. The trained network parameters need to be download form
 https://pan.baidu.com/s/1_qo1a_uF8LzRRqLWg27rLg, Extraction code (提取码): m583.
 
+We randomly generate spectral response R random combination of real spectral responses obtained from 28 cameras, they are:
+![We should have a image here](https://github.com/XieQi2015/ImageFolder/raw/master/MHFnet/R.gif)
+![We should have a image here](https://github.com/XieQi2015/ImageFolder/raw/master/MHFnet/Y.gif)
+
 ### Train and Test on CASI_Houston Data Set
 
 To train and test on CASI_Houston data set, you must first download the CAVE data set form https://hyperspectral.ee.uh.edu/?page%20id=459#download, and put 2013_IEEE_GRSS_DF_Contest_CASI.tif into folder ./rowData/CASI_Houston/. Then run the GetTrainDFTCData.m to prepare the train and test data.
