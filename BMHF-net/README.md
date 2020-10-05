@@ -73,7 +73,7 @@ https://pan.baidu.com/s/1_qo1a_uF8LzRRqLWg27rLg, Extraction code (提取码): m5
 An illustration of the testing data and response are:
 
 ![We should have a image here](https://github.com/XieQi2015/ImageFolder/raw/master/MHFnet/R_real.gif)
-![We should have a image here](https://github.com/XieQi2015/ImageFolder/raw/master/MHFnet/Real_2.png)
+![We should have a image here](https://github.com/XieQi2015/ImageFolder/raw/master/MHFnet/Real.png)
 
 
 
