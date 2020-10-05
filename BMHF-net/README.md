@@ -49,6 +49,9 @@ https://pan.baidu.com/s/1_qo1a_uF8LzRRqLWg27rLg, Extraction code (提取码): m5
 
 To train and test on CASI_Houston data set, you must first download the CAVE data set form https://hyperspectral.ee.uh.edu/?page%20id=459#download, and put 2013_IEEE_GRSS_DF_Contest_CASI.tif into folder ./rowData/CASI_Houston/. Then run the GetTrainDFTCData.m to prepare the train and test data.
 
+Here we set the training data and testing data as:
+![We should have a image here](https://github.com/XieQi2015/ImageFolder/raw/master/MHFnet/Data.png)
+
 The testing data ROSIS_Pavia download form http://www.ehu.eus/ccwintco/index.php?title=Hyperspectral, one can run GetPaviaData.m  to prepare the testing data. The trained network parameters need to be download form
 https://pan.baidu.com/s/1_qo1a_uF8LzRRqLWg27rLg, Extraction code (提取码): m583.
 
