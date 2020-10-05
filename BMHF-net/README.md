@@ -49,7 +49,7 @@ Then, you can just run CAVEmain.py while setting FLAGS.mode in line 23 as 'train
 You can also run CAVEmain.py while setting FLAGS.mode in line 23 as 'test' to test all the 12 testing samples. The trained network parameters need to be download form
 https://pan.baidu.com/s/1_qo1a_uF8LzRRqLWg27rLg, Extraction code (提取码): m583.
 
-We randomly generate spectral response R random combination of real spectral responses obtained from 28 cameras, they are:
+We randomly generate spectral response R by random combination of real spectral responses obtained from 28 cameras, they are:
 ![We should have a image here](https://github.com/XieQi2015/ImageFolder/raw/master/MHFnet/R.gif)
 ![We should have a image here](https://github.com/XieQi2015/ImageFolder/raw/master/MHFnet/Y.gif)
 
@@ -70,7 +70,8 @@ used sensors are in this specified range. Examples are:
 The testing data ROSIS_Pavia download form http://www.ehu.eus/ccwintco/index.php?title=Hyperspectral, one can run GetPaviaData.m  to prepare the testing data. The trained network parameters need to be download form
 https://pan.baidu.com/s/1_qo1a_uF8LzRRqLWg27rLg, Extraction code (提取码): m583.
 
-
+An illustration of the testing data and response are:
+![We should have a image here](https://github.com/XieQi2015/ImageFolder/raw/master/MHFnet/Real.png)
 
 
 
