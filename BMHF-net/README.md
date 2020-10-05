@@ -75,8 +75,8 @@ An illustration of the testing data and response are:
 ![We should have a image here](https://github.com/XieQi2015/ImageFolder/raw/master/MHFnet/R_real.gif)
 ![We should have a image here](https://github.com/XieQi2015/ImageFolder/raw/master/MHFnet/Real.png)
 
-
-
+In the later 2 experimetnts, 
+![We should have a image here](https://github.com/XieQi2015/ImageFolder/raw/master/MHFnet/Introduction.png)
 
 Citation:
 
