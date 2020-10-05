@@ -40,13 +40,16 @@ Folder structure:
 Usage:
 
 Highly recommended to run CMHF-net first, many usage detail of BMHF-net is similar to CMHF-net.
-      
+
+# Train and Test on CAVE Data Set
+
 To train and test on CAVE data set, you must first download the CAVE data set form http://www.cs.columbia.edu/CAVE/databases/multispectral/, and put the data in the folder ./ rowData/CAVEdata/complete_ms_data/, one can refer to the readme of CMHF-net for more detail.
 
 Then, you can just run CAVEmain.py while setting FLAGS.mode in line 23 as 'train'. There will be 20 samples randomly selected to be training samples, and the remain 12 samples will be used as testing samples.
 You can also run CAVEmain.py while setting FLAGS.mode in line 23 as 'test' to test all the 12 testing samples. The trained network parameters need to be download form
 https://pan.baidu.com/s/1_qo1a_uF8LzRRqLWg27rLg, Extraction code (提取码): m583.
 
+# Train and Test on CASI_Houston Data Set
 To train and test on CASI_Houston data set, you must first download the CAVE data set form https://hyperspectral.ee.uh.edu/?page%20id=459#download, and put 2013_IEEE_GRSS_DF_Contest_CASI.tif into folder ./rowData/CASI_Houston/. Then run the GetTrainDFTCData.m to prepare the train and test data.
 
 Here we set the training data and testing data as:
