@@ -51,9 +51,19 @@ To train and test on CASI_Houston data set, you must first download the CAVE dat
 
 Here we set the training data and testing data as:
 ![We should have a image here](https://github.com/XieQi2015/ImageFolder/raw/master/MHFnet/Data.png)
+We randomly generate spectral response R and spatial response C for each training sample. For each R we set the center wavelength of the 4 bands in HrMS image as random
+numbers in [478; 487], [543; 547], [650; 660] and [816; 883], respectively, while the correlated effective bandwidth is set as random numbers in [73; 115], [80; 154], [70; 120] and [136; 203]. Note that most of the center wavelengths and effective bandwidths of the spectral responses of commonly
+used sensors are in this specified range. Examples are:
+![We should have a image here](https://github.com/XieQi2015/ImageFolder/raw/master/MHFnet/R2.gif)
+![We should have a image here](https://github.com/XieQi2015/ImageFolder/raw/master/MHFnet/C.gif)
+
 
 The testing data ROSIS_Pavia download form http://www.ehu.eus/ccwintco/index.php?title=Hyperspectral, one can run GetPaviaData.m  to prepare the testing data. The trained network parameters need to be download form
 https://pan.baidu.com/s/1_qo1a_uF8LzRRqLWg27rLg, Extraction code (提取码): m583.
+
+
+
+
 
 
 Citation:
