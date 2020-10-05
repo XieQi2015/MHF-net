@@ -1,12 +1,5 @@
 # -*- coding: utf-8 -*-
 """
-Created on Mon Aug  5 03:18:37 2019
-
-@author: XieQi
-"""
-
-# -*- coding: utf-8 -*-
-"""
 @author: XieQi
 """
 
