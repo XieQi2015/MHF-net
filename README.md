@@ -1,7 +1,7 @@
 # MHF-net
 Code of Multispectral and Hyperspectral Image Fusion by MS/HS Fusion Net
 
-![We should have a image here](https://github.com/XieQi2015/ImageFolder/raw/master/MHFnet/MHF-net.png)
+![We should have a image here](https://github.com/XieQi2015/ImageFolder/raw/master/MHFnet/MHF-net2.png)
 
     CMHF-net\    : Code of Consistent MS/HS Fusion Net
     BMHF-net\    : Code of Blind MS/HS Fusion Net
