@@ -178,6 +178,7 @@ def PrepareDataAndiniValue(prepare='Yes'):
 def readImofDir(theRoad):
     X = np.zeros([512,512,31])
     for root, dirs, files in os.walk(theRoad):
+        files= sorted(files)
         for i in range(31):
             if files[0] == 'Thumbs.db':
                 j = i+1
