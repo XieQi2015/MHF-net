@@ -1,12 +1,5 @@
 # -*- coding: utf-8 -*-
 """
-Created on Mon Aug  5 03:18:37 2019
-
-@author: XieQi
-"""
-
-# -*- coding: utf-8 -*-
-"""
 @author: XieQi
 """
 
@@ -54,7 +47,7 @@ tf.app.flags.DEFINE_integer('epoch', 80,
                            'epoch') 
 
 # 训练过程数据的存放路劲
-tf.app.flags.DEFINE_string('train_dir', 'temp/RealDataExamFinal/',
+tf.app.flags.DEFINE_string('train_dir', 'temp/RealDataExam/',
                            'Directory to keep training outputs.')
 # 测试过程数据的存放路劲
 tf.app.flags.DEFINE_string('test_dir', 'TestResult/RealDataExamFinal_10rand/',
@@ -92,7 +85,7 @@ def train():
 
     
 
-    outX, ListX, YA, E, HY  = BMHFnet.HSInet(Y, Z, A, B, C, FLAGS.upRank,FLAGS.outDim,FLAGS.HSInetL,FLAGS.subnetL,FLAGS.ratio,Yfram = [0,4,1])
+    outX, ListX, YA, E, HY, CX  = BMHFnet.HSInet(Y, Z, A, B, C, FLAGS.upRank,FLAGS.outDim,FLAGS.HSInetL,FLAGS.subnetL,FLAGS.ratio,Yfram = [0,4,1])
     
     # loss function
     loss    = tf.reduce_mean(tf.square(X - outX)) + FLAGS.lam1*tf.reduce_mean(tf.square(X - YA))+ FLAGS.lam2*tf.reduce_mean(tf.square(E))  # supervised MSE loss
@@ -191,15 +184,6 @@ def train():
             ckpt = tf.train.latest_checkpoint(save_path)
             saver.restore(sess, ckpt)
 
-#            Validation_Loss,pred_val  = sess.run([loss,outX],feed_dict={X:val_h5_X,Y:val_h5_Y,Z:val_h5_Z, A:val_h5_A, B:val_h5_B, C:val_h5_C,lr:lr_})
-#            psnr_val = skimage.measure.compare_psnr(val_h5_X,pred_val)
-#            ssim_val = skimage.measure.compare_ssim(val_h5_X,pred_val, multichannel=True)
-#            toshow = np.hstack(( ML.normalized(ML.get3band_of_tensor(pred_val, nbanch=7, nframe=[0,15,30])),
-#                                 ML.normalized(ML.get3band_of_tensor(val_h5_X, nbanch=7, nframe=[0,15,30]))))
-            
-#            print ('The %d epoch is finished, learning rate = %.8f, Training_Loss = %.4f, PSNR = %.4f, SSIM = %.4f.' %
-#                  (j+1, lr_, CurLoss, psnr, ssim))
-#            ML.imshow(toshow)
             print('=========================================')     
             print('*****************************************')
                               
@@ -207,7 +191,7 @@ def train():
 
 def testAll():
 
-    data = sio.loadmat('RealData/AllRC')
+    data = sio.loadmat('rowData/CASI_Houston/AllRC')
     allR = data['allR']
     allC = data['allC']
     
@@ -228,9 +212,9 @@ def testAll():
     C       = tf.placeholder(tf.float32, shape=(12, 12, 1, 1)) # supervised detail layer (None,64,64,3)
 
     
-    outX, ListX, YA, E, HY  = BMHFnet.HSInet(Y, Z, A, B, C, FLAGS.upRank,FLAGS.outDim,FLAGS.HSInetL,FLAGS.subnetL,FLAGS.ratio,Yfram = [0,4,1])
+    outX, ListX, YA, E, HY, CX  = BMHFnet.HSInet(Y, Z, A, B, C, FLAGS.upRank,FLAGS.outDim,FLAGS.HSInetL,FLAGS.subnetL,FLAGS.ratio,Yfram = [0,4,1])
     
-
+ 
     config = tf.ConfigProto(allow_soft_placement=True,log_device_placement=True)
     config.gpu_options.allow_growth = True
     saver = tf.train.Saver(max_to_keep = 5)
@@ -316,7 +300,7 @@ def testPavia():
     C       = tf.placeholder(tf.float32, shape=(12, 12, 1, 1)) # supervised detail layer (None,64,64,3)
 
 
-    outX, ListX, YA, E, HY  = BMHFnet.HSInet(Y, Z, A, B, C, FLAGS.upRank,FLAGS.outDim,FLAGS.HSInetL,FLAGS.subnetL,FLAGS.ratio,Yfram = [0,4,1])
+    outX, ListX, YA, E, HY, CX  = BMHFnet.HSInet(Y, Z, A, B, C, FLAGS.upRank,FLAGS.outDim,FLAGS.HSInetL,FLAGS.subnetL,FLAGS.ratio,Yfram = [0,4,1])
     
     config = tf.ConfigProto(allow_soft_placement=True,log_device_placement=True)
     config.gpu_options.allow_growth = True

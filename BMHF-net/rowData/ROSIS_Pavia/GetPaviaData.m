@@ -1,3 +1,4 @@
+function GetPaviaData
 % X = double(imread('original_rosis.tif'))/5000;
 % % sizeX = size(X);
 % % max(mean(reshape(X, [sizeX(1)*sizeX(2),sizeX(3)])))
@@ -50,4 +51,28 @@ S = S(1:30,1:30);
 V = V(:,1:30);
 U = U(:,1:30);
 mkdir('../../RealData/Pavia/');
-save('../RealData/Pavia/XYZVS3', 'X','Y','Z','V','Z','R','C')
+save('../../RealData/Pavia/XYZVS3', 'X','Y','Z','V','Z','R','C')
+end
+
+
+function [Y,Z] =  DowsamplingRC2(X,R,C,sizeC,ratio)
+sizeX = size(X);
+uX = reshape(X,[sizeX(1)*sizeX(2),sizeX(3)]);
+Y = reshape(uX*R,[sizeX(1:2),4]);
+Z = zeros([sizeX(1:2)/ratio, sizeX(3)]);
+C = C(end:-1:1,end:-1:1);
+Xpad = mypadding(X,round((sizeC-ratio)/2));
+
+for i=1:sizeC
+    for j = 1:sizeC
+        Z = Z + Xpad(i:ratio:i+sizeX(1)-1,j:ratio:j+sizeX(2)-1,:)*C(i,j);
+    end
+end
+end
+
+function Xpad = mypadding(X,num)
+X1 = [X(num:-1:1,:,:);X;X(end:-1:end-num+1,:,:)];
+X0 = [X(num:-1:1,num:-1:1,:);X(:,num:-1:1,:);X(end:-1:end-num+1,num:-1:1,:)];
+X2 = [X(num:-1:1,end:-1:end-num+1,:);X(:,end:-1:end-num+1,:);X(end:-1:end-num+1,end:-1:end-num+1,:)];
+Xpad = [X0,X1,X2];
+end

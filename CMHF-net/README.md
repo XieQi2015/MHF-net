@@ -38,9 +38,13 @@ You can also run CAVEmain.py while setting FLAGS.mode in line 23 as 'testAll' to
 
 Citation:
 
-    Qi Xie, Minghao Zhou, Qian Zhao, Deyu Meng*, Wangmeng Zuo & Zongben Xu
+    Qi Xie, Minghao Zhou, Qian Zhao, Deyu Meng*, Wangmeng Zuo and Zongben Xu
     Multispectral and Hyperspectral Image Fusion by MS/HS Fusion Net[C]
     2019 IEEE Conference on Computer Vision and Pattern Recognition (CVPR). IEEE Computer Society, 2019.
+
+    Qi Xie, Minghao Zhou, Qian Zhao, Zongben Xu and Deyu Meng* 
+    MHF-Net: An Interpretable Deep Network for Multispectral and Hyperspectral Image Fusion
+    IEEE transactions on pattern analysis and machine intelligence, 2020.
 
     BibTeX:
     
@@ -49,6 +53,14 @@ Citation:
       author={Xie, Qi and Minghao, Zhou and Zhao, Qian and Meng, Deyu and Zuo, Wangmeng and Xu, Zongben },
       booktitle={Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition},
       year={2019} 
+    }
+
+    @article{xie2020MHFnet,
+      title={MHF-Net: An Interpretable Deep Network for Multispectral and Hyperspectral Image Fusion},
+      author={Xie, Qi and Minghao, Zhou and Zhao, Qian and Xu, Zongben and Meng, Deyu},
+      journal={IEEE Transactions on Pattern Analysis and Machine Intelligence},
+      year={2020},
+      publisher={IEEE}
     }
 
 If you encounter any problems, feel free to contact xq.liwu@stu.xjtu.edu.cn
