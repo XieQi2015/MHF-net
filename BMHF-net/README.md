@@ -14,6 +14,7 @@ Outline:
 Folder structure:
 
     rowData\    : Original multispectral images (MSI) data 
+        |-- aaa
         |-- CAVEdata\      : CAVE data set
         |       |-- complete_ms_data\    : The images of data (To be downloaded)
         |       |-- AllR.mat             : Bases of spectral response coefficients
