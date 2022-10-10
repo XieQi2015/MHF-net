@@ -5,8 +5,6 @@ methods.
 
 The code has been test on Windows 10 with Tensorflow 1.12.0 and environment of Spyder
 
-    aaaa
-
 Outline:
 
     Folder structure
